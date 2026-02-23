@@ -9,25 +9,46 @@
 /* 画面中央に配置する魔法 */
 body{
 height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
+margin: 0;
+position: relative;
 background-color: #f0f0f0;
 font-family: sans-serif;
 }
 
 /* 判定ボックス */
 .box{
+position: absolute;
 background: white;
 padding: 30px;
 border-radius: 10px;
 box-shadow: 0 0 10px rgba(0,0,0,0.2);
-text-align: center;
 }
 
-input{
-margin: 5px;
-padding: 5px;
+/* 左上 */
+.left-top{
+top: 20px;
+left: 20px;
+}
+
+
+/* 左下 */
+.left-bottom{
+bottom: 20px;
+left: 20px;
+}
+
+
+/* 右上 */
+.right-top{
+top: 20px;
+right: 20px;
+}
+
+
+/* 右下 */
+.right-bottom{
+bottom: 20px;
+right: 20px;
 }
 
 button{
@@ -41,20 +62,16 @@ padding: 5px 15px;
 
 <body>
 
-<div class="box">
-
 <h2>4つの答えを入力するのじゃ！</h2>
 
-<input type="text" id="a1" placeholder="左上"><br>
-<input type="text" id="a2" placeholder="左下"><br>
-<input type="text" id="a3" placeholder="右上"><br>
-<input type="text" id="a4" placeholder="右下"><br>
+<div class="box left-top">左上の判定</div>
+<div class="box left-bottom">左下の判定</div>
+<div class="box right-top">右上の判定</div>
+<div class="box right-bottom">右下の判定</div>
 
-<button onclick="check()">判定</button>
+<button class="button" onclick="check()">最終判定</button>
 
 <p id="result"></p>
-
-</div>
 
 
 <script>
