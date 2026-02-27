@@ -58,8 +58,8 @@ box-shadow:0 0 10px rgba(0,255,0,0.4);
 
 .a1{ top:8%; left:12%; }
 .a2{ top:8%; right:12%; }
-.a3{ bottom:18%; left:12%; }
-.a4{ bottom:18%; right:12%; }
+.a3{ bottom:50%; left:12%; }
+.a4{ bottom:50%; right:12%; }
 
 /* 中央ボタン */
 .center-check{
@@ -104,22 +104,22 @@ padding:10px;
 
 <!-- 左上（赤） -->
 <div class="answer a1 left">
-<input type="text" id="a1" placeholder="解答①">
+<input type="text" id="a1" placeholder="左上の解答">
 </div>
 
 <!-- 右上（緑） -->
 <div class="answer a2 right">
-<input type="text" id="a2" placeholder="解答②">
+<input type="text" id="a2" placeholder="右上の解答">
 </div>
 
 <!-- 左下（赤） -->
 <div class="answer a3 left">
-<input type="text" id="a3" placeholder="解答③">
+<input type="text" id="a3" placeholder="左下の解答">
 </div>
 
 <!-- 右下（緑） -->
 <div class="answer a4 right">
-<input type="text" id="a4" placeholder="解答④">
+<input type="text" id="a4" placeholder="右下の解答">
 </div>
 
 <div class="center-check">
@@ -139,10 +139,10 @@ var a3=document.getElementById("a3").value;
 var a4=document.getElementById("a4").value;
 
 if(
-a1=="答え1" &&
-a2=="答え2" &&
-a3=="答え3" &&
-a4=="答え4"
+a1=="いろり" &&
+a2=="はいいん" &&
+a3=="あかし" &&
+a4=="しろっぷ"
 ){
 document.getElementById("result").innerHTML="正解！";
 }else{
