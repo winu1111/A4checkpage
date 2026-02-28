@@ -145,11 +145,16 @@ var a2=document.getElementById("a2").value;
 var a3=document.getElementById("a3").value;
 var a4=document.getElementById("a4").value;
 
+var list1 = ["いろり","イロリ","囲炉裏"];
+var list2 = ["はいいん","ハイイン","敗因"];
+var list3 = ["あかし","アカシ","証","明石"];
+var list4 = ["しろっぷ","シロップ"];
+
 if(
-a1=="いろり" &&
-a2=="はいいん" &&
-a3=="あかし" &&
-a4=="しろっぷ"
+list1.includes(a1) &&
+list2.includes(a2) &&
+list3.includes(a3) &&
+list4.includes(a4)
 ){
 document.getElementById("result").innerHTML="正解！";
 }else{
