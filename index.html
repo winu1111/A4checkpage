@@ -82,6 +82,23 @@ color:white;
 cursor:pointer;
 }
 
+/* クリア画像 */
+.clear-area{
+  display:none;
+  text-align:center;
+  margin-top:20px;
+  padding:20px;
+  background:#fff;
+  border-radius:10px;
+  box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+
+.clear-text{
+  font-size:24px;
+  color:#d33;
+  font-weight:bold;
+}
+
 /* ===== スマホ対応 ===== */
 
 @media screen and (max-width:768px){
@@ -134,6 +151,23 @@ padding:10px;
   <p id="result"></p>
 </div>
 
+<div class="clear-area" id="clearArea">
+  <p class="clear-text"> 正解！ </p>
+
+  <p>
+    制作者：
+    <a href="https://twitter.com/あなたのID" target="_blank">
+      ゐぬ娘
+    </a>
+  </p>
+
+  <p>
+    <a id="tweetLink" target="_blank">
+      ▼クリアをツイートする▼
+    </a>
+  </p>
+</div>
+
 </div>
 
 <script>
@@ -156,7 +190,14 @@ list2.includes(a2) &&
 list3.includes(a3) &&
 list4.includes(a4)
 ){
-document.getElementById("result").innerHTML="正解！";
+ // 表示する
+    document.getElementById("clearArea").style.display = "block";
+
+    // ツイート内容を生成
+    var tweetText = "一緒にステップを踏もうぜ。";
+    var tweetURL = "https://twitter.com/intent/tweet?text="
+      + encodeURIComponent(tweetText);
+    document.getElementById("tweetLink").href = tweetURL;
 }else{
 document.getElementById("result").innerHTML="何かが違うようです";
 }
