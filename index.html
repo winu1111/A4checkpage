@@ -190,6 +190,13 @@ padding:10px;
 
 function check(){
 
+var result = document.getElementById("result");
+var clearArea = document.getElementById("clearArea");
+
+
+result.innerHTML = "";
+clearArea.classList.remove("show");
+
 var a1=document.getElementById("a1").value;
 var a2=document.getElementById("a2").value;
 var a3=document.getElementById("a3").value;
