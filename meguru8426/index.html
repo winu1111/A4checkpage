@@ -81,14 +81,13 @@ cursor:pointer;
   text-align:center;
   pointer-events:none;
 }
-  
+
+/* step2表示状態 */
 .step2-image{
   max-width:300px;
   width:80%;
 }
 
-
-/* 表示状態 */
 .step2-area.show{
   opacity:1;
   transform:translateY(0);
@@ -101,6 +100,41 @@ cursor:pointer;
   color:#d33;
   margin-bottom:10px;
 }
+
+/* clear */
+.clear-area{
+   opacity:0;
+  transform:translateY(20px);
+  transition:all 0.6s ease;
+
+  width:80%;
+  max-width:400px;
+  margin:30px auto;
+  padding:20px;
+
+  background:white;
+  border-radius:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+
+  text-align:center;
+  pointer-events:none;
+}
+
+/* clear表示状態 */
+
+.clear-area.show{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+
+.clear-text{
+  font-size:22px;
+  font-weight:bold;
+  color:#d33;
+  margin-bottom:10px;
+}
+
 
 /* ===== スマホ対応 ===== */
 
@@ -144,6 +178,10 @@ padding:10px;
   
     <img src="meguru_step2.png" class="step2-image">
 
+</div>
+
+<div class="clear-area" id="clearArea">
+  <p class="clear-text"> 正解！ </p>
   <p>
     作者：
     <a href="https://x.com/CctieG" target="_blank">
@@ -174,18 +212,24 @@ step2Area.classList.remove("show");
 var a1=document.getElementById("a1").value;
 
 var list1 = ["たけうま","タケウマ","竹馬"];
+var list2 = ["あんさー","アンサー"];
 
 if(
-list1.includes(a1)
-){
- // 表示する
-    document.getElementById("step2Area").classList.add("show");
-
-    // ツイート内容を生成
-    var tweetText = "一緒にステップを踏もうぜ。";
-    var tweetURL = "https://twitter.com/intent/tweet?text="
-      + encodeURIComponent(tweetText);
-    document.getElementById("tweetLink").href = tweetURL;
+  list1.includes(a1)
+  ){
+   // 表示する
+      document.getElementById("step2Area").classList.add("show");
+}if{
+  list2.includes(a1)
+  ){
+   // 表示する
+      document.getElementById("clearArea").classList.add("show");
+  
+      // ツイート内容を生成
+      var tweetText = "一緒にステップを踏もうぜ。";
+      var tweetURL = "https://twitter.com/intent/tweet?text="
+        + encodeURIComponent(tweetText);
+      document.getElementById("tweetLink").href = tweetURL;
 }else{
 document.getElementById("result").innerHTML="何かが違うようです";
 }
