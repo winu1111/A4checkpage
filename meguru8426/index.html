@@ -64,13 +64,12 @@ font-weight:bold;
 /* 表示ボックス */
 
 .box{
-
 position:absolute;
 
 left:50%;
 top:350px;
 
-transform:translate(-50%,0);
+transform:translate(-50%,20px);
 
 opacity:0;
 transition:0.6s;
@@ -91,9 +90,12 @@ pointer-events:none;
 /* 表示状態 */
 
 .box.show{
+
 opacity:1;
-transform:translateY(0);
+transform:translate(-50%,0);
+
 pointer-events:auto;
+
 }
 
 /* 見出し */
