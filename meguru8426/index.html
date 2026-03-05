@@ -18,8 +18,9 @@ font-family:sans-serif;
 position:relative;
 max-width:1000px;
 margin:0 auto;
+min-height:500px;
 }
-
+  
 /* タイトル画像 */
 .title-area{
   text-align:center;
@@ -64,14 +65,19 @@ cursor:pointer;
 }
 
 /* Step2 */
-.step2-area{
-   opacity:0;
-  transform:translateY(20px);
+.step2-area,
+.clear-area{
+
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%) translateY(20px);
+
+  opacity:0;
   transition:all 0.6s ease;
 
   width:80%;
   max-width:400px;
-  margin:30px auto;
   padding:20px;
 
   background:white;
@@ -88,53 +94,20 @@ cursor:pointer;
   width:80%;
 }
 
-.step2-area.show{
-  opacity:1;
-  transform:translateY(0);
-  pointer-events:auto;
-}
-
-.step2-text{
-  font-size:22px;
-  font-weight:bold;
-  color:#d33;
-  margin-bottom:10px;
-}
-
-/* clear */
-.clear-area{
-   opacity:0;
-  transform:translateY(20px);
-  transition:all 0.6s ease;
-
-  width:80%;
-  max-width:400px;
-  margin:30px auto;
-  padding:20px;
-
-  background:white;
-  border-radius:15px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.15);
-
-  text-align:center;
-  pointer-events:none;
-}
-
-/* clear表示状態 */
-
+.step2-area.show,
 .clear-area.show{
   opacity:1;
-  transform:translateY(0);
+  transform:translate(-50%,-50%) translateY(0);
   pointer-events:auto;
 }
 
+.step2-text,
 .clear-text{
   font-size:22px;
   font-weight:bold;
   color:#d33;
   margin-bottom:10px;
 }
-
 
 /* ===== スマホ対応 ===== */
 
