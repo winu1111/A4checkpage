@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>めぐる｜ヒント</title>
+
+<style>
+
+body{
+  margin:0;
+  background:#ffffff;
+  font-family:sans-serif;
+  text-align:center;
+}
+
+.wrapper{
+  max-width:700px;
+  margin:0 auto;
+  padding:30px 20px;
+}
+
+h1{
+  margin-bottom:40px;
+}
+
+.hint{
+  margin:20px auto;
+  max-width:500px;
+}
+
+.hint-text{
+  display:none;
+
+  margin-top:15px;
+  padding:20px;
+
+  background:#f5f5f5;
+  border-radius:12px;
+
+  line-height:1.7;
+}
+
+.hint-text.show{
+  display:block;
+}
+
+button{
+  padding:12px 25px;
+
+  font-size:16px;
+
+  border:none;
+  border-radius:8px;
+
+  background:#333;
+  color:white;
+
+  cursor:pointer;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="wrapper">
+
+<h1>ヒント</h1>
+
+
+<div class="hint">
+
+<button onclick="showHint(1)">
+ヒント1を見る
+</button>
+
+<p id="hint1" class="hint-text">
+問題文をもう一度よく読んでみよう。
+</p>
+
+</div>
+
+
+<div class="hint">
+
+<button onclick="showHint(2)">
+ヒント2を見る
+</button>
+
+<p id="hint2" class="hint-text">
+文字の並び方に注目してみよう。
+</p>
+
+</div>
+
+
+<div class="hint">
+
+<button onclick="showHint(3)">
+ヒント3を見る
+</button>
+
+<p id="hint3" class="hint-text">
+答えは「竹馬」に関係しているぞ。
+</p>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+function showHint(number){
+
+  var hint =
+    document.getElementById("hint" + number);
+
+  hint.classList.add("show");
+
+}
+
+</script>
+
+</body>
+
+</html>
