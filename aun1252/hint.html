@@ -37,7 +37,7 @@ body{
 
 
 /* =========================
-   ヒントボックス
+   大きなヒント
 ========================= */
 
 .hint{
@@ -52,7 +52,7 @@ body{
 }
 
 
-/* ヒントのタイトル部分 */
+/* ヒントのタイトル */
 
 .hint-header{
 
@@ -88,7 +88,7 @@ body{
 
 
 /* =========================
-   ヒントの中身
+   大きなヒントの中身
 ========================= */
 
 .hint-content{
@@ -97,15 +97,15 @@ body{
 
   overflow:hidden;
 
+  padding:0 20px;
+
   transition:
     max-height 0.5s ease,
     padding 0.5s ease;
-
-  padding:0 20px;
 }
 
 
-/* 開いている状態 */
+/* 開いた状態 */
 
 .hint.open .hint-content{
 
@@ -116,34 +116,59 @@ body{
 
 
 /* =========================
-   段階ヒント
+   ヒント内ヒント
 ========================= */
 
 .subhint{
 
   margin-top:15px;
+
+  border:1px solid #aaa;
+
+  border-radius:10px;
+
+  overflow:hidden;
+
+  background:#fff;
 }
 
 
-/* さらにヒントボタン */
+/* ヒント内ヒントのタイトル */
 
-.subhint-button{
+.subhint-header{
 
-  padding:10px 15px;
+  width:100%;
 
-  border:1px solid #555;
+  padding:13px 15px;
 
-  border-radius:8px;
+  box-sizing:border-box;
 
-  background:white;
+  background:#fafafa;
+
+  border:none;
+
+  font-size:15px;
+
+  text-align:left;
 
   cursor:pointer;
 
-  font-size:14px;
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
 }
 
 
-/* 段階ヒントの中身 */
+/* ヒント内ヒントの＋− */
+
+.subhint-arrow{
+  font-size:18px;
+}
+
+
+/* ヒント内ヒントの中身 */
 
 .subhint-content{
 
@@ -151,30 +176,26 @@ body{
 
   overflow:hidden;
 
-  opacity:0;
+  padding:0 15px;
 
   transition:
     max-height 0.4s ease,
-    opacity 0.4s ease;
-
-  margin-top:0;
+    padding 0.4s ease;
 }
 
 
-/* 段階ヒントを開いた状態 */
+/* 開いた状態 */
 
 .subhint.open .subhint-content{
 
   max-height:500px;
 
-  opacity:1;
-
-  margin-top:10px;
+  padding:15px;
 }
 
 
 /* =========================
-   スマホ
+   スマホ対応
 ========================= */
 
 @media screen and (max-width:768px){
@@ -190,6 +211,10 @@ body{
 
   .hint.open .hint-content{
     padding:15px;
+  }
+
+  .subhint-header{
+    font-size:14px;
   }
 
 }
@@ -210,12 +235,14 @@ body{
 </h1>
 
 
-<!-- =====================
+<!-- ==================================
      ヒント1
-===================== -->
+================================== -->
 
 <div class="hint">
 
+
+  <!-- ヒント1のタイトル -->
 
   <button
     class="hint-header"
@@ -229,6 +256,8 @@ body{
   </button>
 
 
+  <!-- ヒント1の中身 -->
+
   <div class="hint-content">
 
     <p>
@@ -236,15 +265,20 @@ body{
     </p>
 
 
-    <!-- 段階ヒント1 -->
+    <!-- ヒント1の中のヒント -->
 
     <div class="subhint">
 
+
       <button
-        class="subhint-button"
+        class="subhint-header"
         onclick="toggleSubHint(this)"
       >
-        さらにヒントを見る
+
+        <span>もう少しヒント</span>
+
+        <span class="subhint-arrow">＋</span>
+
       </button>
 
 
@@ -259,15 +293,20 @@ body{
     </div>
 
 
-    <!-- 段階ヒント2 -->
+    <!-- さらにもう一つ -->
 
     <div class="subhint">
 
+
       <button
-        class="subhint-button"
+        class="subhint-header"
         onclick="toggleSubHint(this)"
       >
-        さらにヒントを見る
+
+        <span>さらにヒント</span>
+
+        <span class="subhint-arrow">＋</span>
+
       </button>
 
 
@@ -288,9 +327,9 @@ body{
 
 
 
-<!-- =====================
+<!-- ==================================
      ヒント2
-===================== -->
+================================== -->
 
 <div class="hint">
 
@@ -316,11 +355,16 @@ body{
 
     <div class="subhint">
 
+
       <button
-        class="subhint-button"
+        class="subhint-header"
         onclick="toggleSubHint(this)"
       >
-        さらにヒントを見る
+
+        <span>もう少しヒント</span>
+
+        <span class="subhint-arrow">＋</span>
+
       </button>
 
 
@@ -337,11 +381,16 @@ body{
 
     <div class="subhint">
 
+
       <button
-        class="subhint-button"
+        class="subhint-header"
         onclick="toggleSubHint(this)"
       >
-        さらにヒントを見る
+
+        <span>さらにヒント</span>
+
+        <span class="subhint-arrow">＋</span>
+
       </button>
 
 
@@ -362,9 +411,9 @@ body{
 
 
 
-<!-- =====================
+<!-- ==================================
      ヒント3
-===================== -->
+================================== -->
 
 <div class="hint">
 
@@ -390,11 +439,16 @@ body{
 
     <div class="subhint">
 
+
       <button
-        class="subhint-button"
+        class="subhint-header"
         onclick="toggleSubHint(this)"
       >
-        さらにヒントを見る
+
+        <span>もう少しヒント</span>
+
+        <span class="subhint-arrow">＋</span>
+
       </button>
 
 
@@ -420,54 +474,81 @@ body{
 
 <script>
 
-/* =========================
-   大きなヒントを開閉
-========================= */
+/* ==================================
+   大きなヒントの開閉
+================================== */
 
 function toggleHint(button){
+
+  /* ボタンの親要素を取得 */
 
   var hint =
     button.parentElement;
 
+
+  /* openを付けたり外したりする */
+
   hint.classList.toggle("open");
 
+
+  /* ＋−を取得 */
 
   var arrow =
     button.querySelector(".arrow");
 
 
-  if(hint.classList.contains("open")){
+  /* 開いているか確認 */
 
-    arrow.textContent="−";
+  if(
+    hint.classList.contains("open")
+  ){
+
+    arrow.textContent = "−";
 
   }else{
 
-    arrow.textContent="＋";
+    arrow.textContent = "＋";
 
   }
 
 }
 
 
-/* =========================
-   段階ヒントを開閉
-========================= */
+
+/* ==================================
+   ヒント内ヒントの開閉
+================================== */
 
 function toggleSubHint(button){
+
+  /* ボタンの親要素を取得 */
 
   var subhint =
     button.parentElement;
 
+
+  /* openを付けたり外したりする */
+
   subhint.classList.toggle("open");
 
 
-  if(subhint.classList.contains("open")){
+  /* ＋−を取得 */
 
-    button.textContent="ヒントを閉じる";
+  var arrow =
+    button.querySelector(".subhint-arrow");
+
+
+  /* 開いているか確認 */
+
+  if(
+    subhint.classList.contains("open")
+  ){
+
+    arrow.textContent = "−";
 
   }else{
 
-    button.textContent="さらにヒントを見る";
+    arrow.textContent = "＋";
 
   }
 
