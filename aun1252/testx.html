@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>スプレッドシートテスト</title>
+</head>
+
+<body>
+
+<h1>ヒントデータテスト</h1>
+
+<div id="output"></div>
+
+<script>
+
+const sheetURL =
+"https://docs.google.com/spreadsheets/d/1zMym9GDTtxuITwwM0_xX96gXH-nsQCsncomUD2IeLsM/gviz/tq?tqx=out:csv&sheet=阿吽";
+
+fetch(sheetURL)
+.then(response => response.text())
+.then(data => {
+
+  console.log(data);
+
+  document.getElementById("output").innerText = data;
+
+})
+.catch(error => {
+
+  console.error(error);
+  document.getElementById("output").innerText =
+    "読み込みに失敗しました";
+
+});
+
+</script>
+
+</body>
+</html>
