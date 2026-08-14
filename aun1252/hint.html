@@ -6,215 +6,268 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 
-<title>めぐる｜ヒント</title>
-
+<title>阿吽 ヒントページ</title>
 
 <style>
 
 /* =========================
-   全体
+   ページ全体
 ========================= */
 
 body{
   margin:0;
+  padding:30px 15px;
+
   background:#ffffff;
-  font-family:sans-serif;
+
+  font-family:
+    sans-serif;
+
   color:#333;
-}
-
-.wrapper{
-  max-width:700px;
-  margin:0 auto;
-  padding:30px 20px;
-}
-
-.title{
-  text-align:center;
-  margin-bottom:30px;
 }
 
 
 /* =========================
-   大きなヒント
+   全体を中央にする
 ========================= */
 
-.hint{
-  margin-bottom:15px;
+.wrapper{
 
-  border:2px solid #333;
-  border-radius:12px;
+  width:100%;
+  max-width:700px;
 
-  overflow:hidden;
+  margin:0 auto;
 
-  background:white;
 }
 
 
-/* ヒントのタイトル */
+/* =========================
+   タイトル
+========================= */
 
-.hint-header{
+.title{
+
+  text-align:center;
+
+  font-size:32px;
+
+  font-weight:bold;
+
+  margin-bottom:30px;
+
+}
+
+
+/* =========================
+   ヒント
+========================= */
+
+.hint{
+
+  margin-bottom:15px;
+
+}
+
+
+/* =========================
+   ヒントのボタン
+========================= */
+
+.hint-title{
 
   width:100%;
 
-  padding:18px 20px;
-
   box-sizing:border-box;
 
-  background:#f5f5f5;
+  padding:15px 20px;
 
   border:none;
 
+  border-radius:12px;
+
+  background:#eeeeee;
+
+  color:#333;
+
   font-size:18px;
+
+  font-weight:bold;
 
   text-align:left;
 
   cursor:pointer;
 
-  display:flex;
+  transition:0.2s;
 
-  justify-content:space-between;
-
-  align-items:center;
 }
 
 
-/* ＋と− */
+/* マウスを乗せたとき */
 
-.arrow{
+.hint-title:hover{
+
+  background:#dddddd;
+
+}
+
+
+/* ＋と－ */
+
+.hint-title::after{
+
+  content:"＋";
+
+  float:right;
+
   font-size:20px;
+
+}
+
+
+/* 開いている状態 */
+
+.hint-title.open::after{
+
+  content:"－";
+
 }
 
 
 /* =========================
-   大きなヒントの中身
+   ヒント本文
 ========================= */
 
 .hint-content{
 
-  max-height:0;
+  display:none;
 
-  overflow:hidden;
+  padding:15px 20px;
 
-  padding:0 20px;
+  background:#fafafa;
 
-  transition:
-    max-height 0.5s ease,
-    padding 0.5s ease;
+  border-radius:0 0 12px 12px;
+
+  line-height:1.8;
+
 }
 
 
-/* 開いた状態 */
+/* 表示状態 */
 
-.hint.open .hint-content{
+.hint-content.show{
 
-  max-height:1000px;
+  display:block;
 
-  padding:20px;
 }
 
 
 /* =========================
-   ヒント内ヒント
+   さらにヒント
 ========================= */
 
 .subhint{
 
-  margin-top:15px;
+  margin-top:10px;
 
-  border:1px solid #aaa;
-
-  border-radius:10px;
-
-  overflow:hidden;
-
-  background:#fff;
 }
 
 
-/* ヒント内ヒントのタイトル */
-
-.subhint-header{
+.subhint-title{
 
   width:100%;
 
-  padding:13px 15px;
-
   box-sizing:border-box;
 
-  background:#fafafa;
+  padding:12px 15px;
 
   border:none;
 
-  font-size:15px;
+  border-radius:10px;
+
+  background:#e9e9e9;
 
   text-align:left;
 
+  font-size:16px;
+
   cursor:pointer;
 
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
 }
 
 
-/* ヒント内ヒントの＋− */
+.subhint-title::after{
 
-.subhint-arrow{
-  font-size:18px;
+  content:"＋";
+
+  float:right;
+
 }
 
 
-/* ヒント内ヒントの中身 */
+.subhint-title.open::after{
+
+  content:"－";
+
+}
+
 
 .subhint-content{
 
-  max-height:0;
+  display:none;
 
-  overflow:hidden;
+  padding:12px 15px;
 
-  padding:0 15px;
+  line-height:1.7;
 
-  transition:
-    max-height 0.4s ease,
-    padding 0.4s ease;
 }
 
 
-/* 開いた状態 */
+.subhint-content.show{
 
-.subhint.open .subhint-content{
+  display:block;
 
-  max-height:500px;
-
-  padding:15px;
 }
 
 
 /* =========================
-   スマホ対応
+   読み込み中
+========================= */
+
+.loading{
+
+  text-align:center;
+
+  padding:30px;
+
+}
+
+
+/* =========================
+   スマートフォン
 ========================= */
 
 @media screen and (max-width:768px){
 
-  .wrapper{
-    padding:20px 15px;
+  body{
+
+    padding:20px 10px;
+
   }
 
-  .hint-header{
+  .title{
+
+    font-size:26px;
+
+  }
+
+  .hint-title{
+
     font-size:16px;
-    padding:16px;
-  }
 
-  .hint.open .hint-content{
-    padding:15px;
-  }
+    padding:14px 15px;
 
-  .subhint-header{
-    font-size:14px;
   }
 
 }
@@ -229,243 +282,23 @@ body{
 
 <div class="wrapper">
 
-
-<h1 class="title">
-ヒント
-</h1>
-
-
-<!-- ==================================
-     ヒント1
-================================== -->
-
-<div class="hint">
-
-
-  <!-- ヒント1のタイトル -->
-
-  <button
-    class="hint-header"
-    onclick="toggleHint(this)"
-  >
-
-    <span>ヒント1</span>
-
-    <span class="arrow">＋</span>
-
-  </button>
-
-
-  <!-- ヒント1の中身 -->
-
-  <div class="hint-content">
-
-    <p>
-      まずは問題文をもう一度よく読んでみよう。
-    </p>
-
-
-    <!-- ヒント1の中のヒント -->
-
-    <div class="subhint">
-
-
-      <button
-        class="subhint-header"
-        onclick="toggleSubHint(this)"
-      >
-
-        <span>もう少しヒント</span>
-
-        <span class="subhint-arrow">＋</span>
-
-      </button>
-
-
-      <div class="subhint-content">
-
-        <p>
-          特に文字の並び方に注目してみよう。
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <!-- さらにもう一つ -->
-
-    <div class="subhint">
-
-
-      <button
-        class="subhint-header"
-        onclick="toggleSubHint(this)"
-      >
-
-        <span>さらにヒント</span>
-
-        <span class="subhint-arrow">＋</span>
-
-      </button>
-
-
-      <div class="subhint-content">
-
-        <p>
-          文字の形にも何か意味があるかもしれないぞ。
-        </p>
-
-      </div>
-
-    </div>
-
-
+  <div class="title">
+    阿吽 ヒント
   </div>
 
-</div>
 
+  <!--
+    ここにスプレッドシートから
+    ヒントが自動生成される
+  -->
 
+  <div id="hints">
 
-<!-- ==================================
-     ヒント2
-================================== -->
-
-<div class="hint">
-
-
-  <button
-    class="hint-header"
-    onclick="toggleHint(this)"
-  >
-
-    <span>ヒント2</span>
-
-    <span class="arrow">＋</span>
-
-  </button>
-
-
-  <div class="hint-content">
-
-    <p>
-      問題の中に繰り返し登場するものを探してみよう。
-    </p>
-
-
-    <div class="subhint">
-
-
-      <button
-        class="subhint-header"
-        onclick="toggleSubHint(this)"
-      >
-
-        <span>もう少しヒント</span>
-
-        <span class="subhint-arrow">＋</span>
-
-      </button>
-
-
-      <div class="subhint-content">
-
-        <p>
-          同じ文字が何度も出てきていないかな？
-        </p>
-
-      </div>
-
+    <div class="loading">
+      ヒントを読み込んでいます……
     </div>
-
-
-    <div class="subhint">
-
-
-      <button
-        class="subhint-header"
-        onclick="toggleSubHint(this)"
-      >
-
-        <span>さらにヒント</span>
-
-        <span class="subhint-arrow">＋</span>
-
-      </button>
-
-
-      <div class="subhint-content">
-
-        <p>
-          その文字を抜き出してみよう。
-        </p>
-
-      </div>
-
-    </div>
-
 
   </div>
-
-</div>
-
-
-
-<!-- ==================================
-     ヒント3
-================================== -->
-
-<div class="hint">
-
-
-  <button
-    class="hint-header"
-    onclick="toggleHint(this)"
-  >
-
-    <span>ヒント3</span>
-
-    <span class="arrow">＋</span>
-
-  </button>
-
-
-  <div class="hint-content">
-
-    <p>
-      ここまでで分からなければ、別の角度から考えてみよう。
-    </p>
-
-
-    <div class="subhint">
-
-
-      <button
-        class="subhint-header"
-        onclick="toggleSubHint(this)"
-      >
-
-        <span>もう少しヒント</span>
-
-        <span class="subhint-arrow">＋</span>
-
-      </button>
-
-
-      <div class="subhint-content">
-
-        <p>
-          答えは「竹馬」に関係しているぞ。
-        </p>
-
-      </div>
-
-    </div>
-
-
-  </div>
-
-</div>
 
 
 </div>
@@ -474,85 +307,313 @@ body{
 
 <script>
 
-/* ==================================
-   大きなヒントの開閉
-================================== */
 
-function toggleHint(button){
-
-  /* ボタンの親要素を取得 */
-
-  var hint =
-    button.parentElement;
+/* ==========================================
+   Googleスプレッドシートの設定
+========================================== */
 
 
-  /* openを付けたり外したりする */
-
-  hint.classList.toggle("open");
-
-
-  /* ＋−を取得 */
-
-  var arrow =
-    button.querySelector(".arrow");
+const SHEET_ID =
+"1zMym9GDTtxuITwwM0_xX96gXH-nsQCsncomUD2IeLsM";
 
 
-  /* 開いているか確認 */
+const SHEET_GID =
+"0";
 
-  if(
-    hint.classList.contains("open")
-  ){
 
-    arrow.textContent = "−";
 
-  }else{
+/* ==========================================
+   データ取得URL
+========================================== */
 
-    arrow.textContent = "＋";
 
-  }
+const sheetURL =
+"https://docs.google.com/spreadsheets/d/"
++ SHEET_ID
++ "/gviz/tq?tqx=responseHandler:receiveData"
++ "&gid="
++ SHEET_GID;
+
+
+
+/* ==========================================
+   Googleからデータを受け取る
+========================================== */
+
+
+function receiveData(data){
+
+  console.log(data);
+
+
+  const rows =
+    data.table.rows;
+
+
+  const hints = {};
+
+
+  /*
+    データをIDごとに整理する
+  */
+
+  rows.forEach(function(row){
+
+    const id =
+      row.c[0]?.v;
+
+    const step =
+      row.c[1]?.v;
+
+    const title =
+      row.c[2]?.v;
+
+    const text =
+      row.c[3]?.v;
+
+
+    if(!hints[id]){
+
+      hints[id] = [];
+
+    }
+
+
+    hints[id].push({
+
+      step:step,
+
+      title:title,
+
+      text:text
+
+    });
+
+  });
+
+
+  createHints(hints);
 
 }
 
 
 
-/* ==================================
-   ヒント内ヒントの開閉
-================================== */
-
-function toggleSubHint(button){
-
-  /* ボタンの親要素を取得 */
-
-  var subhint =
-    button.parentElement;
+/* ==========================================
+   ヒントHTMLを作る
+========================================== */
 
 
-  /* openを付けたり外したりする */
+function createHints(hints){
 
-  subhint.classList.toggle("open");
-
-
-  /* ＋−を取得 */
-
-  var arrow =
-    button.querySelector(".subhint-arrow");
+  const container =
+    document.getElementById("hints");
 
 
-  /* 開いているか確認 */
+  container.innerHTML = "";
 
-  if(
-    subhint.classList.contains("open")
-  ){
 
-    arrow.textContent = "−";
+  Object.keys(hints).forEach(function(id){
 
-  }else{
+    const hintGroup =
+      hints[id];
 
-    arrow.textContent = "＋";
 
-  }
+    /*
+      stepの順番に並べる
+    */
+
+    hintGroup.sort(function(a,b){
+
+      return Number(a.step)
+           - Number(b.step);
+
+    });
+
+
+    /*
+      最初のstep
+    */
+
+    const first =
+      hintGroup[0];
+
+
+    /*
+      ヒント全体
+    */
+
+    const hint =
+      document.createElement("div");
+
+    hint.className =
+      "hint";
+
+
+    /*
+      ヒントタイトル
+    */
+
+    const title =
+      document.createElement("button");
+
+    title.className =
+      "hint-title";
+
+    title.textContent =
+      first.title;
+
+
+    /*
+      ヒント本文
+    */
+
+    const content =
+      document.createElement("div");
+
+    content.className =
+      "hint-content";
+
+
+    const text =
+      document.createElement("p");
+
+    text.textContent =
+      first.text;
+
+
+    content.appendChild(text);
+
+
+    /*
+      クリックで開閉
+    */
+
+    title.onclick =
+      function(){
+
+        title.classList.toggle("open");
+
+        content.classList.toggle("show");
+
+      };
+
+
+    /*
+      さらにヒント
+    */
+
+    for(
+      let i=1;
+      i<hintGroup.length;
+      i++
+    ){
+
+      const sub =
+        hintGroup[i];
+
+
+      const subHint =
+        document.createElement("div");
+
+      subHint.className =
+        "subhint";
+
+
+      const subTitle =
+        document.createElement("button");
+
+      subTitle.className =
+        "subhint-title";
+
+      subTitle.textContent =
+        sub.title;
+
+
+      const subContent =
+        document.createElement("div");
+
+      subContent.className =
+        "subhint-content";
+
+
+      const subText =
+        document.createElement("p");
+
+      subText.textContent =
+        sub.text;
+
+
+      subContent.appendChild(
+        subText
+      );
+
+
+      /*
+        クリックで開閉
+      */
+
+      subTitle.onclick =
+        function(){
+
+          subTitle.classList.toggle("open");
+
+          subContent.classList.toggle("show");
+
+        };
+
+
+      subHint.appendChild(
+        subTitle
+      );
+
+      subHint.appendChild(
+        subContent
+      );
+
+
+      content.appendChild(
+        subHint
+      );
+
+    }
+
+
+    hint.appendChild(
+      title
+    );
+
+    hint.appendChild(
+      content
+    );
+
+
+    container.appendChild(
+      hint
+    );
+
+  });
 
 }
+
+
+
+/* ==========================================
+   スクリプトを読み込む
+========================================== */
+
+
+const script =
+document.createElement("script");
+
+
+script.src =
+sheetURL;
+
+
+document.body.appendChild(
+  script
+);
+
 
 </script>
 
