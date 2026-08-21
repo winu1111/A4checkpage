@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>謎解き解答ページ</title>
+<title>meguru解答ページ</title>
 
 <style>
 
@@ -24,12 +24,21 @@ position:relative;
 }
 
 /* タイトル */
-.title-image{
-width:80%;
-max-width:320px;
-margin-bottom:20px;
+.title-area{
+  text-align:center;
+  margin:20px 0 30px;
 }
 
+  @media screen and (max-width:768px)
+
+.title-area h1{
+  font-size:36px;
+  font-weight:normal;
+  color:#333;
+  margin:0;
+  letter-spacing:0.15em;
+}
+  
 /* 入力欄 */
 
 .answer input{
@@ -132,7 +141,9 @@ margin-top:10px;
 
 <div class="wrapper">
 
-<img src="meguru_title.png" class="title-image">
+<div class="title-area">
+  <h1>meguru</h1>
+</div>
 
 <div class="answer">
 <input type="text" id="answer" placeholder="答えを入力">
