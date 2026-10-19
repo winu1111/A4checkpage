@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>阿吽 ヒントページ</title>
+
+<style>
+
+/* =========================
+   ページ全体
+========================= */
+
+body{
+  margin:0;
+  padding:30px 15px;
+
+  background:#ffffff;
+
+  font-family:
+    sans-serif;
+
+  color:#333;
+}
+
+
+/* =========================
+   全体を中央にする
+========================= */
+
+.wrapper{
+
+  width:100%;
+  max-width:700px;
+
+  margin:0 auto;
+
+}
+
+
+/* =========================
+   タイトル
+========================= */
+
+.title{
+
+  text-align:center;
+
+  font-size:32px;
+
+  font-weight:bold;
+
+  margin-bottom:30px;
+
+}
+
+
+/* =========================
+   ヒント
+========================= */
+
+.hint{
+
+  margin-bottom:15px;
+
+}
+
+
+/* =========================
+   ヒントのボタン
+========================= */
+
+.hint-title{
+
+  width:100%;
+
+  box-sizing:border-box;
+
+  padding:15px 20px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:#eeeeee;
+
+  color:#333;
+
+  font-size:18px;
+
+  font-weight:bold;
+
+  text-align:left;
+
+  cursor:pointer;
+
+  transition:0.2s;
+
+}
+
+
+/* マウスを乗せたとき */
+
+.hint-title:hover{
+
+  background:#dddddd;
+
+}
+
+
+/* ＋と－ */
+
+.hint-title::after{
+
+  content:"＋";
+
+  float:right;
+
+  font-size:20px;
+
+}
+
+
+/* 開いている状態 */
+
+.hint-title.open::after{
+
+  content:"－";
+
+}
+
+
+/* =========================
+   ヒント本文
+========================= */
+
+.hint-content{
+
+  display:none;
+
+  padding:15px 20px;
+
+  background:#fafafa;
+
+  border-radius:0 0 12px 12px;
+
+  line-height:1.8;
+
+}
+
+
+/* 表示状態 */
+
+.hint-content.show{
+
+  display:block;
+
+}
+
+
+/* =========================
+   さらにヒント
+========================= */
+
+.subhint{
+
+  margin-top:10px;
+
+}
+
+
+.subhint-title{
+
+  width:100%;
+
+  box-sizing:border-box;
+
+  padding:12px 15px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:#e9e9e9;
+
+  text-align:left;
+
+  font-size:16px;
+
+  cursor:pointer;
+
+}
+
+
+.subhint-title::after{
+
+  content:"＋";
+
+  float:right;
+
+}
+
+
+.subhint-title.open::after{
+
+  content:"－";
+
+}
+
+
+.subhint-content{
+
+  display:none;
+
+  padding:12px 15px;
+
+  line-height:1.7;
+
+}
+
+
+.subhint-content.show{
+
+  display:block;
+
+}
+
+
+/* =========================
+   読み込み中
+========================= */
+
+.loading{
+
+  text-align:center;
+
+  padding:30px;
+
+}
+
+
+/* =========================
+   スマートフォン
+========================= */
+
+@media screen and (max-width:768px){
+
+  body{
+
+    padding:20px 10px;
+
+  }
+
+  .title{
+
+    font-size:26px;
+
+  }
+
+  .hint-title{
+
+    font-size:16px;
+
+    padding:14px 15px;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="wrapper">
+
+  <div class="title">
+    阿吽 ヒント
+  </div>
+
+
+  <!--
+    ここにスプレッドシートから
+    ヒントが自動生成される
+  -->
+
+  <div id="hints">
+
+    <div class="loading">
+      ヒントを読み込んでいます……
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* ==========================================
+   Googleスプレッドシートの設定
+========================================== */
+
+
+const SHEET_ID =
+"1zMym9GDTtxuITwwM0_xX96gXH-nsQCsncomUD2IeLsM";
+
+
+const SHEET_GID =
+"189604154";
+
+
+
+/* ==========================================
+   データ取得URL
+========================================== */
+
+
+const sheetURL =
+"https://docs.google.com/spreadsheets/d/"
++ SHEET_ID
++ "/gviz/tq?tqx=responseHandler:receiveData"
++ "&gid="
++ SHEET_GID;
+
+
+
+/* ==========================================
+   Googleからデータを受け取る
+========================================== */
+
+
+function receiveData(data){
+
+  console.log(data);
+
+
+  const rows =
+    data.table.rows;
+
+
+  const hints = {};
+
+
+  /*
+    データをIDごとに整理する
+  */
+
+  rows.forEach(function(row){
+
+    const id =
+      row.c[0]?.v;
+
+    const step =
+      row.c[1]?.v;
+
+    const title =
+      row.c[2]?.v;
+
+    const text =
+      row.c[3]?.v;
+
+
+    if(!hints[id]){
+
+      hints[id] = [];
+
+    }
+
+
+    hints[id].push({
+
+      step:step,
+
+      title:title,
+
+      text:text
+
+    });
+
+  });
+
+
+  createHints(hints);
+
+}
+
+
+
+/* ==========================================
+   ヒントHTMLを作る
+========================================== */
+
+
+function createHints(hints){
+
+  const container =
+    document.getElementById("hints");
+
+
+  container.innerHTML = "";
+
+
+  Object.keys(hints).forEach(function(id){
+
+    const hintGroup =
+      hints[id];
+
+
+    /*
+      stepの順番に並べる
+    */
+
+    hintGroup.sort(function(a,b){
+
+      return Number(a.step)
+           - Number(b.step);
+
+    });
+
+
+    /*
+      最初のstep
+    */
+
+    const first =
+      hintGroup[0];
+
+
+    /*
+      ヒント全体
+    */
+
+    const hint =
+      document.createElement("div");
+
+    hint.className =
+      "hint";
+
+
+    /*
+      ヒントタイトル
+    */
+
+    const title =
+      document.createElement("button");
+
+    title.className =
+      "hint-title";
+
+    title.textContent =
+      first.title;
+
+
+    /*
+      ヒント本文
+    */
+
+    const content =
+      document.createElement("div");
+
+    content.className =
+      "hint-content";
+
+
+    const text =
+      document.createElement("p");
+
+    text.textContent =
+      first.text;
+
+
+    content.appendChild(text);
+
+
+    /*
+      クリックで開閉
+    */
+
+    title.onclick =
+      function(){
+
+        title.classList.toggle("open");
+
+        content.classList.toggle("show");
+
+      };
+
+
+    /*
+      さらにヒント
+    */
+
+    for(
+      let i=1;
+      i<hintGroup.length;
+      i++
+    ){
+
+      const sub =
+        hintGroup[i];
+
+
+      const subHint =
+        document.createElement("div");
+
+      subHint.className =
+        "subhint";
+
+
+      const subTitle =
+        document.createElement("button");
+
+      subTitle.className =
+        "subhint-title";
+
+      subTitle.textContent =
+        sub.title;
+
+
+      const subContent =
+        document.createElement("div");
+
+      subContent.className =
+        "subhint-content";
+
+
+      const subText =
+        document.createElement("p");
+
+      subText.textContent =
+        sub.text;
+
+
+      subContent.appendChild(
+        subText
+      );
+
+
+      /*
+        クリックで開閉
+      */
+
+      subTitle.onclick =
+        function(){
+
+          subTitle.classList.toggle("open");
+
+          subContent.classList.toggle("show");
+
+        };
+
+
+      subHint.appendChild(
+        subTitle
+      );
+
+      subHint.appendChild(
+        subContent
+      );
+
+
+      content.appendChild(
+        subHint
+      );
+
+    }
+
+
+    hint.appendChild(
+      title
+    );
+
+    hint.appendChild(
+      content
+    );
+
+
+    container.appendChild(
+      hint
+    );
+
+  });
+
+}
+
+
+
+/* ==========================================
+   スクリプトを読み込む
+========================================== */
+
+
+const script =
+document.createElement("script");
+
+
+script.src =
+sheetURL;
+
+
+document.body.appendChild(
+  script
+);
+
+
+</script>
+
+
+</body>
+
+</html>
