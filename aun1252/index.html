@@ -59,7 +59,7 @@ border-color:#2c9b2c;
 box-shadow:0 0 10px rgba(0,255,0,0.4);
 }
 
-/* 位置調整（ここは微調整ポイント） */
+/* 位置調整　*/
 
 .a1{ top:100px; left:100px; }
 .a2{ top:100px; right:100px; }
@@ -115,13 +115,21 @@ cursor:pointer;
   margin-bottom:10px;
 }
 
-/* ヒント告知 */
+/* ヒントリンク */
 
-.hint-notice{
+.hint-link{
   text-align:center;
-  font-size:12px;
-  color:#aaa;
-  margin:40px 0 20px;
+  margin:30px 0;
+  font-size:14px;
+}
+
+.hint-link a{
+  color:#888;
+  text-decoration:underline;
+}
+
+.hint-link a:hover{
+  color:#333;
 }
   
   
@@ -183,7 +191,7 @@ padding:10px;
   <p>
     作者：
     <a href="https://x.com/CctieG" target="_blank">
-      ゐぬ娘
+      ゐぬ娘。
     </a>
   </p>
 
@@ -194,9 +202,9 @@ padding:10px;
   </p>
 </div>
 
- <p class="hint-notice">
-  ※ヒントサイトは11月ごろ実装予定です
-</p> 
+<p class="hint-link">
+  <a href="https://winu1111.github.io/A4checkpage/aun1252/hint">ヒントはこちら</a>
+</p>
   
 </div>
 
@@ -230,7 +238,7 @@ list4.includes(a4)
  // 表示する
     document.getElementById("clearArea").classList.add("show");
 
-    // ツイート内容を生成
+    // ツイート
     var tweetText =
       "箱娘ノ一枚謎『阿吽』をクリアした。\n\n" +
       "#箱娘ノ一枚謎";
