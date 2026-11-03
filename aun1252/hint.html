@@ -12,9 +12,7 @@
 
 <style>
 
-/* =========================
-   ページ全体
-========================= */
+/* ページ全体 */
 
 body{
   margin:0;
@@ -28,11 +26,6 @@ body{
   color:#333;
 }
 
-
-/* =========================
-   全体を中央にする
-========================= */
-
 .wrapper{
 
   width:100%;
@@ -43,9 +36,7 @@ body{
 }
 
 
-/* =========================
-   タイトル
-========================= */
+/* タイトル */
 
 .title{
 
@@ -60,9 +51,7 @@ body{
 }
 
 
-/* =========================
-   ヒント
-========================= */
+/* ヒント */
 
 .hint{
 
@@ -71,9 +60,7 @@ body{
 }
 
 
-/* =========================
-   ヒントのボタン
-========================= */
+/* ヒントのボタン */
 
 .hint-title{
 
@@ -135,9 +122,7 @@ body{
 }
 
 
-/* =========================
-   ヒント本文
-========================= */
+/* ヒント本文 */
 
 .hint-content{
 
@@ -163,9 +148,7 @@ body{
 }
 
 
-/* =========================
-   さらにヒント
-========================= */
+/* さらにヒント */
 
 .subhint{
 
@@ -231,9 +214,7 @@ body{
 }
 
 
-/* =========================
-   読み込み中
-========================= */
+/* 読み込み中 */
 
 .loading{
 
@@ -244,9 +225,7 @@ body{
 }
 
 
-/* =========================
-   スマートフォン
-========================= */
+/* スマートフォン */
 
 @media screen and (max-width:768px){
 
@@ -308,9 +287,7 @@ body{
 <script>
 
 
-/* ==========================================
-   Googleスプレッドシートの設定
-========================================== */
+/* Googleスプレッドシートの設定 */
 
 
 const SHEET_ID =
@@ -322,9 +299,7 @@ const SHEET_GID =
 
 
 
-/* ==========================================
-   データ取得URL
-========================================== */
+/* データ取得URL */
 
 
 const sheetURL =
@@ -333,12 +308,6 @@ const sheetURL =
 + "/gviz/tq?tqx=responseHandler:receiveData"
 + "&gid="
 + SHEET_GID;
-
-
-
-/* ==========================================
-   Googleからデータを受け取る
-========================================== */
 
 
 function receiveData(data){
@@ -353,9 +322,7 @@ function receiveData(data){
   const hints = {};
 
 
-  /*
-    データをIDごとに整理する
-  */
+  /*　データをIDごとに整理する　*/
 
   rows.forEach(function(row){
 
@@ -398,9 +365,7 @@ function receiveData(data){
 
 
 
-/* ==========================================
-   ヒントHTMLを作る
-========================================== */
+/* ヒントHTMLを作る */
 
 
 function createHints(hints){
@@ -418,9 +383,7 @@ function createHints(hints){
       hints[id];
 
 
-    /*
-      stepの順番に並べる
-    */
+    /*　stepの順番に並べる */
 
     hintGroup.sort(function(a,b){
 
@@ -430,17 +393,13 @@ function createHints(hints){
     });
 
 
-    /*
-      最初のstep
-    */
+    /*　最初のstep　*/
 
     const first =
       hintGroup[0];
 
 
-    /*
-      ヒント全体
-    */
+    /*　ヒント全体　*/
 
     const hint =
       document.createElement("div");
@@ -449,9 +408,7 @@ function createHints(hints){
       "hint";
 
 
-    /*
-      ヒントタイトル
-    */
+    /*　ヒントタイトル　*/
 
     const title =
       document.createElement("button");
@@ -463,9 +420,7 @@ function createHints(hints){
       first.title;
 
 
-    /*
-      ヒント本文
-    */
+    /*　ヒント本文　*/
 
     const content =
       document.createElement("div");
@@ -484,9 +439,7 @@ function createHints(hints){
     content.appendChild(text);
 
 
-    /*
-      クリックで開閉
-    */
+    /*　クリックで開閉　*/
 
     title.onclick =
       function(){
@@ -498,9 +451,7 @@ function createHints(hints){
       };
 
 
-    /*
-      さらにヒント
-    */
+    /*　さらにヒント　*/
 
     for(
       let i=1;
@@ -548,9 +499,7 @@ function createHints(hints){
       );
 
 
-      /*
-        クリックで開閉
-      */
+      /* クリックで開閉 */
 
       subTitle.onclick =
         function(){
@@ -597,9 +546,7 @@ function createHints(hints){
 
 
 
-/* ==========================================
-   スクリプトを読み込む
-========================================== */
+/* スクリプトを読み込む */
 
 
 const script =
