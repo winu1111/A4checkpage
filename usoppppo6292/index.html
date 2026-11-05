@@ -47,6 +47,26 @@ border-color:#696969;
 box-shadow:0 0 10px rgba(0,0,0,0.4);
 }
 
+/*修正画像*/
+.correction{
+  text-align:center;
+  margin:40px auto;
+  padding:20px;
+  max-width:500px;
+}
+
+.correction p:first-child{
+  font-weight:bold;
+  font-size:18px;
+}
+
+.correction img{
+  width:100%;
+  max-width:450px;
+  height:auto;
+  margin-top:10px;
+}
+
 /* 中央ボタン */
 .center-check{
 text-align:center;
@@ -148,6 +168,12 @@ padding:10px;
 <div class="center-check">
   <button onclick="check()">判定</button>
   <p id="result"></p>
+</div>
+
+<div class="correction">
+  <p>問題の訂正について</p>
+  <p>問題に一部誤りがありました。こちらをご確認ください。</p>
+  <img src="correction.png" alt="問題の修正版">
 </div>
 
 <div class="clear-area" id="clearArea">
